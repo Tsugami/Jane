@@ -54,6 +54,15 @@ export default function EditScreenInfo({ path }: { path: string }) {
           </Text>
         </TouchableOpacity>
       </View>
+
+      
+      <View style={styles.helpContainer}>
+        <TouchableOpacity onPress={handleNotFoundPress} style={styles.helpLink}>
+          <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
+            Go to unknown router!
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
