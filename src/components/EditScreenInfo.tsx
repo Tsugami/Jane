@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import auth from '@react-native-firebase/auth';
 
+import { useAuthState } from 'react-firebase-hooks/auth';
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
@@ -10,11 +12,29 @@ import { Text, View } from './Themed';
 export default function EditScreenInfo({ path }: { path: string }) {
   const navigation = useNavigation();
 
+  const [user, loading, error] = useAuthState(auth());
+
   const handleNotFoundPress = () => navigation.navigate('NotFound');
+
+  if (loading) {
+    return (
+      <View>
+        <ActivityIndicator />
+      </View>
+    );
+  }
 
   return (
     <View>
       <View style={styles.getStartedContainer}>
+        <Text
+          style={styles.getStartedText}
+          lightColor="rgba(0,0,0,0.8)"
+          darkColor="rgba(255,255,255,0.8)"
+        >
+          {error && 'deu erro'}
+          {user ? 'tu ta logado' : ' ue tu n ta logado'}
+        </Text>
         <Text
           style={styles.getStartedText}
           lightColor="rgba(0,0,0,0.8)"
