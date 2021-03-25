@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    'import/extensions': 'off',
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     'react/jsx-filename-extension': [
       1,
@@ -30,6 +31,7 @@ module.exports = {
     'react/prop-types': 'off',
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/no-unescaped-entities': 'off',
   },
   settings: {
     'import/extensions': ['.ts', '.tsx', '.js', '.tsx'],
